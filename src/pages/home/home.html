@@ -1,14 +1,78 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Order your shoes
     </ion-title>
   </ion-navbar>
 </ion-header>
+<ion-card-content>
 
+</ion-card-content>
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will be your guide.
-  </p>
+  <img src="https://scontent.fbkk2-7.fna.fbcdn.net/v/t1.15752-9/130859709_3436794496370102_1743696786225376067_n.jpg?_nc_cat=108&ccb=2&_nc_sid=ae9488&_nc_eui2=AeE3t1pF2h7B7wq6RFWzBisWgYjYT0OL2AOBiNhPQ4vYA1ipxF_I6GVQnS3mt7v6HuyTCkJGPPPg4BIjq3k5hR9g&_nc_ohc=xs9SgDJE4yYAX-4AVgD&_nc_ht=scontent.fbkk2-7.fna&oh=22d0da10b0102200d50384b9feeb612d&oe=5FF65BEB">
+  <ion-item>
+  <ion-label>Number </ion-label>
+    <ion-input [(ngModel)]="num" placeholder="Choose from 1-10"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Amount</ion-label>
+    <ion-input [(ngModel)]="amount" placeholder="Enter amount"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Address</ion-label>
+  <ion-input placeholder="Enter Name&Address" [(ngModel)]="Address"></ion-input>
+  </ion-item>
+  Choose Size (US)    
+  <button ion-button icon-only (click)="minusSize(side)"> - </button>{{side}}
+  <button ion-button icon-only (click)="plusSize(side)"> + </button>
+  <button ion-button (click)="showPrice(num,amount,Address)" full>SEARCH</button>
+  <div *ngIf='price | async as prc'>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>NUMBER: {{prc.data[0].numb}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        Price per pairs:{{prc.data[0]['price']}} <br>
+      </ion-card-content>
+      <ion-card-content>
+        Total Cost:{{prc.data[0]['price']*am}}
+      </ion-card-content>
+      <ion-card-content>
+        Address:{{pie}}
+      </ion-card-content>
+      <ion-card-content>
+        Size (US):{{side}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-item>
+    <ion-label>Number</ion-label>
+      <ion-input [(ngModel)]="q1" placeholder="Enter number"></ion-input>
+    </ion-item>
+  <ion-item>
+  <ion-label>Amount</ion-label>
+    <ion-input [(ngModel)]="q2" placeholder="Enter Amount"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Address</ion-label>
+      <ion-input [(ngModel)]="q3" placeholder="Name with Address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Size</ion-label>
+        <ion-input [(ngModel)]="q4" placeholder="Enter Size (US)"></ion-input>
+      </ion-item>
+      <button ion-button color='danger' (click)="save()" full>ORDER</button>
+      <button ion-button color='Warning' (click)="getMax()" full>Max Size Ordered</button>
+    <div *ngIf='tada | async as tad'>
+    <ion-card >
+      <ion-card-header>
+        <ion-card-title>Find Maximum Size Ordered</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+      <p>MaxSize: {{tad.tada[0]['size']}}</p>
+    </ion-card-content>
+    </ion-card>
+   </div>
+      <button ion-button (click)="nextPage()" full>next page</button>
 </ion-content>
